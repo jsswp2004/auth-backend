@@ -1,13 +1,20 @@
-const express = require("express");
+// const express = require("express");
+import express from 'express'
 const app = express();
-const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const bodyParser = require("body-parser");
+import bodyParser from 'body-parser'
+// const bcrypt = require("bcrypt");
+import bcrypt from 'bcrypt'
+// const jwt = require("jsonwebtoken");
+import jwt from 'jsonwebtoken'
 
 // require database connection
-const dbConnect = require("./db/dbConnect");
-const User = require("./db/userModel");
-const auth = require("./auth");
+// const dbConnect = require("./db/dbConnect");
+import dbConnect from './db/dbConnect.js'
+// const User = require("./db/userModel");
+import User from './db/userModel.js'
+// const auth = require("./auth");
+import auth from './auth.js'
 
 // execute database connection
 dbConnect();
@@ -78,7 +85,6 @@ app.post("/register", (request, response) => {
 app.post("/login", (request, response) => {
   // check if email exists
   User.findOne({ email: request.body.email })
-
     // if email exists
     .then((user) => {
       // compare the password entered and the hashed password found
@@ -140,4 +146,5 @@ app.get("/auth-endpoint", auth, (request, response) => {
   response.send({ message: "You are authorized to access me" });
 });
 
-module.exports = app;
+// module.exports = app;
+export default app;
